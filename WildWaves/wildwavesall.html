@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wild Waves Aquatic Park</title>
+</head>
+<body>
+    <h1>Wild Waves Aquatic Park</h1>
+    <button type="button" onclick="buyTicket()">Purchase Attraction</button>
+    <script>
+        const WAVE_POOL_MIN_HEIGHT = 42; // in inches
+    	const WATERSLIDE_MIN_HEIGHT = 48; // in inches
+    	const LAZY_RIVER_MIN_HEIGHT = 36; // in inches
+        const ALL_ATTRACTIONS_MIN_HEIGHT_WITH_ADULT = 43; // in inches
+
+        function buyTicket() {
+            const attractionType = prompt('Which attraction do you want to visit: type "wave" for wave pool, "water" for waterslide, or "river" for lazy river?');
+            const userHeight = parseInt(prompt('What is your height in inches?'));
+            const withAdultResponse = prompt('Are you with an adult? Yes or No');
+            const withAdult = withAdultResponse.toLowerCase() === 'yes';
+
+            console.log("User's selected attraction is " + attractionType);
+            console.log("User's height is " + userHeight);
+            console.log("User is with an adult: " + withAdult);
+
+            const isAllowed = checkHeight(attractionType, userHeight, withAdult);
+            if (isAllowed) {
+                alert('You are allowed to enter the attraction');
+            } else {
+                if(!withAdult) {
+                    alert('Sorry since you do not meet the height requirement and will not be with an adult you can not enter this attraction');
+                } else {
+                    alert('Sorry, you are not tall enough for the attraction');
+                }
+            }
+        }
+
+        function checkHeight(attraction, height, withAdult) {
+            if(withAdult && height >= ALL_ATTRACTIONS_MIN_HEIGHT_WITH_ADULT) {
+                return true;
+            }
+
+            switch(attraction) {
+                case 'wave':
+                    return height >= WAVE_POOL_MIN_HEIGHT;
+                case 'water': 
+                    return height >= WATERSLIDE_MIN_HEIGHT;
+                case 'river': 
+                    return height >= LAZY_RIVER_MIN_HEIGHT;
+                default:
+                    return false;
+            }
+        }
+    </script>
+    
+</body>
+</html>
