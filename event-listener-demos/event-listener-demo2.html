@@ -26,6 +26,7 @@
 
         function changeBackground() {
             div.style.background = 'purple';
+            div.removeEventListener('mouseover', changeBackground);
         }
 
         function revert() {
