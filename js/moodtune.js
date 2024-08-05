@@ -1,13 +1,37 @@
-// const form = document.querySelector("#musicForm");
-
-//async function sendData() {
-  // associate the FormData object with the form element 
-  //const formData = new FormData(form);
-//}
-
-const musicForm = [
+document.addEventListener('DOMContentLoaded', function() {
+    let currentQuestion = 1;
+    const totalQuestions = 4;
+    
+    document.getElementById('nextQuestion').addEventListener('click', function() {
+      // hide the current question 
+      document.getElementById(`question${currentQuestion}`).classList.remove('active');
+      // increment to the count
+      currentQuestion++
+      // if the current question is less than the total questions it will show the next question
+      if (currentQuestion <= totalQuestions) {
+        document.getElementById(`question${currentQuestion}`).classList.add('active');
+        if (currentQuestion === totalQuestions) {
+          this.style.display = 'none';
+          document.getElementById('submitAnswers').style.display = 'inline';
+        
+        }
+    }
+}
+ 
+    
+  document.getElementById(musicForm).addEventListener('submit', async function(event)) {
+  event.preventDefault();
+    
+    const currentMood = document.getElementById('currentMood').value;
+    const desiredMood = document.getElementById('desiredMood').value;
+    const favoritePart = Array.from(document.getElementById('favoritePart').selectedOptions).map(option => option.value);
+    const genres = Array.from(document.getElementById('genres').selectedOptions).map(option => option.value);
+    
+    // we need to continue here with const the items that are coming through the API
+  }
   
-]
+
+
 
 //let slideIndex = 0;
   showSlides();
@@ -23,8 +47,7 @@ const musicForm = [
     slides[slideIndex-1].style.display = "block";
     setTimeout(showSlides, 2000); // Change image every 2 seconds
   }
-  Multiple Slideshows
-  Example
+  //Multiple Slideshows Example
   let slideIndex = [1,1];
   /* Class the members of each slideshow group with different CSS classes */
   let slideId = ["mySlides1", "mySlides2"]
