@@ -114,7 +114,7 @@ h2 {
 }
 
 fieldset {
-            
+           
   width: 100%;
   max-width: 700px;
   margin: 0 auto;
@@ -126,7 +126,7 @@ fieldset {
   transition: left 0.5s ease-in-out;
   border: none;
   height:100%;
-  z-index: 1;
+  
   /* background-color: rgba(255, 252, 127, 1); */
 }
 
@@ -151,7 +151,7 @@ fieldset:nth-of-type(5) {
 }
 
 fieldset.active {
-  left: 40px;
+  left: 0px;
 }
   
 .container h2 {
