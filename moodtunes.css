@@ -96,7 +96,7 @@ h2 {
   border-radius: 10px;
 }
 
-.question-active {
+.fieldset-active {
   max-width: 600px;
   margin: 0 auto;
             padding: 20px;
@@ -106,7 +106,7 @@ h2 {
   
 }
 
-.question {
+.fieldset {
             max-width: 700px;
             margin: 0 auto;
             padding: 20px;
@@ -463,9 +463,14 @@ h2 {
             background-color: rgba(255, 252, 127, 1);
   
         }
-.container {
+/**.container {
     display: flex;
 }
+**/
+
+
+
+
 
 
   
