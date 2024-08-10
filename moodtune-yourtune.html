@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your MoodTune Match</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoodTunes</title>
+ <link href="https://fonts.cdnfonts.com/css/retro-couture" rel="stylesheet">
+  <style>
+    body {
+      background-image: url("https://assets.codepen.io/12496448/game-background-video-web.gif");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+@import url('https://fonts.cdnfonts.com/css/retro-couture');
+  </style>
 </head>
 <body>
-    
+   
+<div class="container">
+    <form id="musicForm"></form>
+     <div class=answer id="image-container">
+        <audio src="myCoolTrack.mp3"></audio>
+ 
+        <button class="data-playing" data-playing="false"           role="switch" aria-checked="false">
+            <span>Play/Pause</span>
+           </button>
+     </div>
+      
+      <div class=answer id=information>
+          <h2>ABOUT YOUR MOOD TUNES MATCH</h2>
+          
+      </div> 
+  
+ <div class="results" id="results"></div>
+  <script src="script.js"></script>
+  
+</script>
 </body>
 </html>
