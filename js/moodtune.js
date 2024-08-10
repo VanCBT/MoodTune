@@ -28,3 +28,17 @@ Next4.onclick = function() {
   Form4.style.left = "-450px";
   Form5.style.left = "40px";
 }
+
+const forms = document.querySelectorAll('fieldset');
+const nextButtons = document.querySelectorAll('.next-question');
+
+nextButtons.forEach((button, index) => {
+  button.onclick = function(event) {
+    event.preventDefault(); // Prevent form submission
+    forms[index].style.left = "-450px";
+    if (forms[index + 1]) {
+      forms[index + 1].style.left = "40px";
+      forms[index + 1].classList.add('active');
+    }
+  };
+});

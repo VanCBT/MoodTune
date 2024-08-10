@@ -1,3 +1,20 @@
+body {
+  background-image: cover;
+  
+}
+
+@media (max-width: 768px) {
+  fieldset {
+      left: 100%;
+  }
+
+  fieldset.active {
+      left: 40px;
+  }
+}
+
+
+
 /* Form question font */
 h2 {
   text-align: center;
@@ -96,25 +113,47 @@ h2 {
   border-radius: 10px;
 }
 
-.fieldset-active {
-  max-width: 600px;
+fieldset {
+            
+  width: 100%;
+  max-width: 700px;
   margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background-color: rgba(255, 252, 127, 1);
-  
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  left: 450px;
+  /* starts off the screen to the right */
+  transition: left 0.5s ease-in-out;
+  border: none;
+  height:100%;
+  z-index: 1;
+  /* background-color: rgba(255, 252, 127, 1); */
 }
 
-.fieldset {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background-color: rgba(255, 252, 127, 1);
+fieldset:nth-of-type(1) {
+  z-index: 5; /* Highest z-index for the first question */
+}
+
+fieldset:nth-of-type(2) {
+  z-index: 4; /* Lower z-index for the second question */
+}
+
+fieldset:nth-of-type(3) {
+  z-index: 3;
+}
+
+fieldset:nth-of-type(4) {
+  z-index: 2;
+}
+
+fieldset:nth-of-type(5) {
+  z-index: 1; /* Lowest z-index for the last question */
+}
+
+fieldset.active {
+  left: 40px;
+}
   
-        }
 .container h2 {
             margin-top: 0;
         }
@@ -122,7 +161,7 @@ h2 {
   border-radius: 50%;
   height: 35rem;
   width: 35rem;
-  background: rgba(254, 249, 231, .87);
+  background: rgba(254, 249, 231, 1);
 }
 
 #songs {
