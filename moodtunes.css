@@ -1,6 +1,6 @@
 body {
   background-image: cover;
-  
+
 }
 
 @media (max-width: 768px) {
@@ -19,7 +19,7 @@ body {
 h2 {
   text-align: center;
   font-family: 'Retro Couture',
-  sans-serif;                     
+  sans-serif;
   font-size: 35px;
   font-weight: 400;
   letter-spacing: .3rem;
@@ -41,7 +41,7 @@ h2 {
   /* z-index:-1;
     add this if music notes are not overlapping after forms are separated*/
 }
- 
+
 .next-question {
   padding: 0.6em 2em;
   display: block;
@@ -113,20 +113,22 @@ h2 {
 }
 
 fieldset {
-           
   width: 100%;
   max-width: 700px;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  left: 450px;
-  /* starts off the screen to the right */
-  transition: left 0.5s ease-in-out;
+  transition: right 1s ease-in-out;
   border: none;
   height:100%;
-  
+  position: absolute;
   /* background-color: rgba(255, 252, 127, 1); */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  right: 10%;
+  height: auto;
 }
 
 fieldset:nth-of-type(1) {
@@ -150,9 +152,9 @@ fieldset:nth-of-type(5) {
 }
 
 fieldset.active {
-  left: 0px;
+  /* left: 0px; */
 }
-  
+
 .container h2 {
             margin-top: 0;
         }
@@ -161,6 +163,7 @@ fieldset.active {
   height: 35rem;
   width: 35rem;
   background: rgba(254, 249, 231, 1);
+  margin: 0 auto;
 }
 
 #songs {
@@ -499,15 +502,9 @@ fieldset.active {
             border: 1px solid #ccc;
             border-radius: 10px;
             background-color: rgba(255, 252, 127, 1);
-  
+
         }
 .containerSpecial {
     display: flex;
 }
-
-
-
-
-
-
   

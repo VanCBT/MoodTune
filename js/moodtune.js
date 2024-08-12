@@ -15,10 +15,12 @@ const nextButtons = document.querySelectorAll('.next-question');
 nextButtons.forEach((button, index) => {
   button.onclick = function(event) {
     event.preventDefault(); // Prevent form submission
-    forms[index].style.left = "-450px";
+     forms[index].style.right = "-145%";
+     forms[index].style.left = "unset";
+     forms[index].classList.remove('active');
+
     if (forms[index + 1]) {
-      forms[index + 1].style.left = "40px";
-      forms[index + 1].classList.add('active');
+       forms[index + 1].classList.add('active');
     }
   };
 });
