@@ -1,7 +1,17 @@
 const clientId = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
 
+let token = null;
+let tokenExpiryTime = null;
+
 async function getToken() {
+  // Check to see if we already have a valid token 
+  const currentTime = new Date().getTime();
+  if (token && tokenExpiryTime && currentTime < tokenExpiryTime) {
+    return token; // Token is still valid return it
+  }
+
+  // if the token is expired or not available, then we need to fetch a new one
   const response = await fetch('https://accounts.spotify.com/api/token', {
     method: 'POST',
     body: new URLSearchParams({
@@ -11,9 +21,15 @@ async function getToken() {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Basic ' + (Buffer.from(clientId + ':' + clientSecret).toString('base64')),
     },
-    });
+  });
 
-    return await response.json();
+  const data = await response.json();
+
+  // Store the token and also calculate the expiry time
+  token = data.access_token;
+  tokenExpiryTime = new Date().getTime() + (data.expires_in * 3600); // this was the expires_in response when tested in postman
+
+  return token;
 }
 
 const Form1 = document.getElementById("Form1");
