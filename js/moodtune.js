@@ -46,15 +46,74 @@ const Next4 = document.getElementById("next4");
 const forms = document.querySelectorAll('fieldset');
 const nextButtons = document.querySelectorAll('.next-question');
 
-nextButtons.forEach((button, index) => {
-  button.onclick = function(event) {
-    event.preventDefault(); // Prevent form submission
-     forms[index].style.right = "-145%";
-     forms[index].style.left = "unset";
-     forms[index].classList.remove('active');
+// Collect and store the user answers to the questions
+let userResponses = {
+  currentMood: '',
+  desiredMood: '',
+  favoritePart: [],
+  genres: []
+};
 
-    if (forms[index + 1]) {
-       forms[index + 1].classList.add('active');
-    }
-  };
-});
+// nextButtons.forEach((button, index) => {
+//   button.onclick = function(event) {
+//      //event.preventDefault(); // Prevent form submission
+//      forms[index].style.right = "-145%";
+//      forms[index].style.left = "unset";
+//      forms[index].classList.remove('active');
+
+//     if (forms[index + 1]) {
+//        forms[index + 1].classList.add('active');
+//     }
+//   };
+// });
+
+
+// store answer to question 1
+Next1.onclick = function(event) {
+  event.preventDefault();
+  userResponses.currentMood = document.querySelector('input[name="currentMood"]:checked').value;
+};
+
+// store answer to question 2
+Next2.onclick = function(event) {
+  event.preventDefault();
+  userResponses.desiredMood = document.querySelector('input[name="desiredMood"]:checked').value;
+};
+
+// store answer to question 3
+Next3.onclick = function(event) {
+  event.preventDefault();
+  userResponses.favoritePart = document.querySelector('input[name="favoritePart"]:checked').value;
+};
+
+//store answer to question 4
+Next4.onclick= async function(event) {
+  event.preventDefault();
+  userResponses.genres = Array.from(document.querySelector('input[name="genres"]:checked')).map(checkbox => checkbox.value);
+  const recommendations = await getRecommendations(userResponses.desiredMood, userResponses.favoritePart, userResponses.genres);
+
+  const songSelect = documentElementById('songs');
+  songSelect.innerHTML = ''; // clear the existing songs to populate recommendations to select
+  recommendations.forEach(song => {
+    const option = document.createElement('option');
+    option.value = `${song.name}, ${song.artists[0].name}`; //we need to populate 5?
+    option.textContent = `${song.name}, ${song.artists[0].name}`;
+    songSelect.appendChild(option);
+  });
+}
+
+// NOTE: we have to call the getRecommendations but everything I try breaks it, this part we have to figure out....
+
+// async function getRecommendations(mood, genres, favoritePart) { //we may need to change this to only pull recommendations based on mood and genre?
+//   let seed_genres = genres.join(','); // do we need to match this to only the genres they can select?
+//   const response = await fetch(`https://api.spotify.com/v1/recommendations?limit=10&seed_genres=${seed_genres}`), { // how do we add the desired mood here and favorite part?
+  
+//  //return data.tracks; // I think we need to expand this, not sure where to add all the endpoints we are trying to pull....
+//   }
+// }
+
+
+
+
+
+
