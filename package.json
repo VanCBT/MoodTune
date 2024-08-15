@@ -4,6 +4,7 @@
   "description": "MoodTune is a game that matches songs to your mood, or the mood you want to be in.",
   "source": "moodtune.html",
   "scripts": {
+    "start": "parcel moodtune.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/VanCBT/MoodTune#readme",
   "devDependencies": {
+    "buffer": "^6.0.3",
     "parcel": "^2.12.0"
   }
 }
