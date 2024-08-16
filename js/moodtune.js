@@ -12,6 +12,7 @@ async function getToken() {
   }
 
   // if the token is expired or not available, then we need to fetch a new one
+  try {
   const response = await fetch('https://accounts.spotify.com/api/token', {
     method: 'POST',
     body: new URLSearchParams({
@@ -23,13 +24,20 @@ async function getToken() {
     },
   });
 
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
   const data = await response.json();
 
   // Store the token and also calculate the expiry time
   token = data.access_token;
   tokenExpiryTime = new Date().getTime() + (data.expires_in * 3600); // this was the expires_in response when tested in postman
-
   return token;
+} catch (error) {
+  console.error('Error fetching token:', error);
+  throw error;
+  }
 }
 
 const Form1 = document.getElementById("Form1");
@@ -89,10 +97,10 @@ Next3.onclick = function(event) {
 //store answer to question 4
 Next4.onclick= async function(event) {
   event.preventDefault();
-  userResponses.genres = Array.from(document.querySelector('input[name="genres"]:checked')).map(checkbox => checkbox.value);
+  userResponses.genres = Array.from(document.querySelectorAll('input[name="genres"]:checked')).map(checkbox => checkbox.value);
   const recommendations = await getRecommendations(userResponses.desiredMood, userResponses.favoritePart, userResponses.genres);
 
-  const songSelect = documentElementById('songs');
+  const songSelect = document.getElementById('songs');
   songSelect.innerHTML = ''; // clear the existing songs to populate recommendations to select
   recommendations.forEach(song => {
     const option = document.createElement('option');
@@ -101,17 +109,53 @@ Next4.onclick= async function(event) {
     songSelect.appendChild(option);
   });
 }
-
-// NOTE: we have to call the getRecommendations but everything I try breaks it, this part we have to figure out....
-
-// async function getRecommendations(mood, genres, favoritePart) { //we may need to change this to only pull recommendations based on mood and genre?
-//   let seed_genres = genres.join(','); // do we need to match this to only the genres they can select?
-//   const response = await fetch(`https://api.spotify.com/v1/recommendations?limit=10&seed_genres=${seed_genres}`), { // how do we add the desired mood here and favorite part?
+async function getRecommendations(mood, favoritePart, genres) {
+  const token = await getToken();
+  const seed_genres = genres.join(',');
   
-//  //return data.tracks; // I think we need to expand this, not sure where to add all the endpoints we are trying to pull....
-//   }
-// }
+  // Map mood to valence and energy parameters
+  const moodParams = getMoodParams(mood);
+  
+  // Map favoritePart to audio features
+  const partParams = getPartParams(favoritePart);
 
+  const params = new URLSearchParams({
+    limit: 5,
+    seed_genres: seed_genres,
+    ...moodParams,
+    ...partParams
+  });
+
+  const response = await fetch(`https://api.spotify.com/v1/recommendations?${params}`, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+
+  const data = await response.json();
+  return data.tracks;
+}
+
+function getMoodParams(mood) {
+  // Map mood to valence and energy values
+  const moodMap = {
+    'happy': { target_valence: 0.8, target_energy: 0.8 },
+    'sad': { target_valence: 0.2, target_energy: 0.3 },
+    'energetic': { target_valence: 0.6, target_energy: 0.9 },
+    'calm': { target_valence: 0.5, target_energy: 0.3 }
+  };
+  return moodMap[mood] || {};
+}
+
+function getPartParams(favoritePart) {
+  // Map favorite part to relevant audio features
+  const partMap = {
+    'lyrics': { target_speechiness: 0.7 },
+    'melody': { target_instrumentalness: 0.7 },
+    'rhythm': { target_danceability: 0.7 }
+  };
+  return partMap[favoritePart] || {};
+}
 
 
 
