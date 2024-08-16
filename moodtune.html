@@ -6,64 +6,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MoodTunes</title>
   <link href="https://fonts.cdnfonts.com/css/retro-couture" rel="stylesheet">
-  <link href="/moodtunes.css" rel="stylesheet">
+  <link href="./moodtunes.css" rel="stylesheet">
   <style>
     body {
-      background-image: url("/images/game-background-video-web.gif");
+      background-image: url("./images/game-background-video-web.gif");
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
     }
-
-    form {
-      
+    
+    form {  
       width: 100%;
       height: 100vh;
       overflow: hidden;
     }
-
-
-  </style>
+    
+    </style>
 </head>
 <body>
 
-<form id="moodForm">
-<fieldset id="Form1" class="active">
-  <div class="question circle" id="question1">
-    <h2>How do you feel right now?</h2>
-    <br>
-    <label><input type="radio" name="currentMood" value="Sad or Depressed"> Sad or Depressed</label><br>
-    <label><input type="radio" name="currentMood" value="Happy"> Happy</label><br>
-    <label><input type="radio" name="currentMood" value="Angry or Upset"> Angry or Upset</label><br>
-    <label><input type="radio" name="currentMood" value="Anxious"> Anxious</label>
-    <br>
-    <div class="musicNotes">
-      <div class="note-1">
-        &#9835; &#9833;
-      </div>
-      <div class="note-2">
-        &#9833;
-      </div>
-      <div class="note-3">
-        &#9834;
-      </div>
-      <div class="note-4">
-        &#9834;
-      </div>
-    </div>
-    <button id="next1" class="next-question" role="button">Next Question</button>
-  </div>
-  </fieldset>
-
-  <fieldset id="Form2">
-    <div class="question circle" id="question2">
-      <h2>How would you like to feel?</h2>
+<form id="moodForm" >
+  <fieldset id="Form1" class="fieldset-container active" >
+    <div class="question circle" id="question1">
+      <h2>How do you feel right now?</h2>
       <br>
-      <label><input type="radio" name="desiredMood" value="Relaxed"> Relaxed</label><br>
-      <label><input type="radio" name="desiredMood" value="Focused"> Focused</label><br>
-      <label><input type="radio" name="desiredMood" value="Happy"> Happy</label><br>
-      <label><input type="radio" name="desiredMood" value="Energetic"> Energetic</label><br>
-      <label><input type="radio" name="desiredMood" value="Sad"> Sad</label><br>
+      <label>
+        <input type="radio" name="currentMood" value="Sad or Depressed" checked /> Sad or Depressed</label><br>
+      <label>
+        <input type="radio" name="currentMood" value="Happy"> Happy</label><br>
+      <label>
+        <input type="radio" name="currentMood" value="Angry or Upset"> Angry or Upset</label><br>
+      <label>
+        <input type="radio" name="currentMood" value="Anxious"> Anxious</label>
+      <br>
       <div class="musicNotes">
         <div class="note-1">
           &#9835; &#9833;
@@ -78,17 +53,63 @@
           &#9834;
         </div>
       </div>
-      <button id="next2" class="next-question" role="button">Next Question</button>
+      <button id="next1" class="next-question" type="button">Next Question</button>
+    </div>
+  </fieldset>
+
+  <fieldset id="Form2"class="fieldset-container" >
+    <div class="question circle" id="question2">
+      <h2>How would you like to feel?</h2>
+      <br>
+        <label>
+          <input type="radio" name="desiredMood" value="calm" checked> Calm
+        </label>
+      <br>
+        <label>
+          <input type="radio" name="desiredMood" value="happy"> Happy
+        </label>
+      <br>
+        <label>
+          <input type="radio" name="desiredMood" value="energetic"> Energetic
+        </label>
+      <br>
+        <label>
+          <input type="radio" name="desiredMood" value="sad"> Sad
+        </label>
+      <br>
+      <div class="musicNotes">
+        <div class="note-1">
+          &#9835; &#9833;
+        </div>
+        <div class="note-2">
+          &#9833;
+        </div>
+        <div class="note-3">
+          &#9834;
+        </div>
+        <div class="note-4">
+          &#9834;
+        </div>
+      </div>
+      <button id="next2" class="next-question" type="button">Next Question</button>
     </div>
     </fieldset>
 
-    <fieldset id="Form3">
+    <fieldset id="Form3"class="fieldset-container" >
       <div class="question circle" id="question3">
         <h2>What is your favorite part of the music you listen to?</h2>
-        <label><input type="checkbox" name="favoritePart" value="Melody"> Melody</label><br>
-        <label><input type="checkbox" name="favoritePart" value="Lyrics"> Lyrics</label><br>
-        <label><input type="checkbox" name="favoritePart" value="Rhythm and Bass"> Rhythm and Bass</label><br>
-        <label><input type="checkbox" name="favoritePart" value="All"> I like all of these</label><br>
+          <label>
+            <input type="checkbox" name="favoritePart" value="melody" checked > Melody
+          </label>
+        <br>
+          <label>
+            <input type="checkbox" name="favoritePart" value="lyrics"> Lyrics
+          </label>
+        <br>
+          <label>
+            <input type="checkbox" name="favoritePart" value="rhythm"> Rhythm and Bass
+          </label>
+        <br>
         <div class="musicNotes">
           <div class="note-1">
             &#9835; &#9833;
@@ -103,22 +124,21 @@
             &#9834;
           </div>
         </div>
-        <button id="next3" class="next-question" role="button">Next Question</button>
+        <button id="next3" class="next-question" type="button">Next Question</button>
       </div>
     </fieldset>
 
-    <fieldset id="Form4">
+    <fieldset id="Form4"class="fieldset-container" >
       <div class="question circle" id="question4">
         <h2>What genres of music do you like?</h2>
-        <label><input type="checkbox" name="genre" value="Pop"> Pop</label><br>
+        <label><input type="checkbox" name="genre" value="Pop" checked> Pop</label><br>
         <label><input type="checkbox" name="genre" value="Country"> Country</label><br>
         <label><input type="checkbox" name="genre" value="Oldies & Classic Hits"> Oldies & Classic Hits</label> <br>
         <label><input type="checkbox" name="genre" value="Classic Rock"> Classic Rock</label><br>
         <label><input type="checkbox" name="genre" value="Soft Rock"> Soft Rock</label><br>
         <label><input type="checkbox" name="genre" value="Alternative"> Alternative</label><br>
         <label><input type="checkbox" name="genre" value="Instrumental"> Instrumental</label><br>
-        <label><input type="checkbox" name="genre" value="Variety"> I like a variety of genres</label><br>
-        <button id="next4" class="next-question" role="button">Next Question</button>
+        <button id="next4" class="next-question" type="submit">Submit</button>
         <div class="musicNotes">
           <div class="note-1">
             &#9835; &#9833;
@@ -135,37 +155,13 @@
         </div>
       </div>
     </fieldset>
-
-    <fieldset id="Form5">
-      <div class="question circle" id="question5">
-        <h2>Select which song(s) you like! </h2>
-        <select name="songs" id="songs" multiple>
-          <option value="song1, artist1">*Hound Dog, Elvis Presley</option>
-          <option value="song2, artist2">*Sweet Home Alabama, Lynyrd Skynyrd</option>
-          <option value="song3, artist3">*Respect, Aretha Franklin</option>
-          <option value="song4, artist4">*Billie Jean, Micheal Jaction</option>
-          <option value="song5, artist5">*Sweet Child O' Mine, Guns N' Roses</option>
-          <option value="song6, artist6">*I Will Always Love You, Whitney Houston</option>
-          <option value="song8, artist8">*Zombie, The Cranberries</option>
-          <option value="song9, artist9">*...Baby One More Time, Britney Spears</option>
-          <option value="song10, artist10">*In The End, Linkin Park</option>
-          <option value="song11, artist11">*Last Night, Morgan Wallen</option>
-          <option value="song12, artist12">*Symphony 5, Ludwig van Beethoven</option>
-          <option value="song13, artist13">*You Belong With Me, Taylor Swift</option>
-          <option value="song14, artist14">*Thank You, Next, Ariana Grande</option>
-          <option value="song15, artist15">*Fly Me to the Moon, Frank Sinatra</option>
-        </select><br>
-        <button type="submit" class="submit" role="button">Find My Tune</button>
-      </div>
-    </fieldset>
-
 </form>
 
 
-<div class="results" id="results"></div>
+<div class="results" id="results" ></div>
 
 
-<script src="js/moodtune.js" type="module"></script>
+<script src="./js/moodtune.js" type="module"></script>
 
 
 </script>
@@ -173,4 +169,3 @@
 </body>
 
 </html>
-console.log()
