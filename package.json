@@ -4,15 +4,16 @@
   "description": "MoodTune is a game that matches songs to your mood, or the mood you want to be in.",
   "source": "moodtune.html",
   "scripts": {
-    "start": "parcel moodtune.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel --open",
+    "build": "parcel build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/VanCBT/MoodTune.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Nucamp Project Team",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/VanCBT/MoodTune/issues"
